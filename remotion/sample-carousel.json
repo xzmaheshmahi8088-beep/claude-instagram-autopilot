@@ -1,0 +1,12 @@
+{
+  "handle": "@yourbusiness",
+  "slides": [
+    { "kind": "hook", "tag": "ON AUTOPILOT", "headline": "Claude gets me Instagram leads while I sleep" },
+    { "kind": "tool", "n": 1, "headline": "Connect Instagram", "emphasis": "via Composio", "body": "composio.dev → add the Instagram MCP" },
+    { "kind": "tool", "n": 2, "headline": "Reddit + X eyes:", "emphasis": "agent-reach", "body": "Claude reads what's trending in your niche" },
+    { "kind": "tool", "n": 3, "important": true, "headline": "The cheat code:", "emphasis": "content-skills", "body": "Claude engineers a viral reel idea every day" },
+    { "kind": "tool", "n": 4, "headline": "Writes it in", "emphasis": "your tone", "body": "give it your voice, it builds the whole reel" },
+    { "kind": "tool", "n": 5, "headline": "Every hour →", "emphasis": "fresh leads", "body": "one scheduled task DMs you new leads" },
+    { "kind": "cta", "emphasis": "AUTOMATE", "body": "and I'll DM you the full 5-tool setup" }
+  ]
+}

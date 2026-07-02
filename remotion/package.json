@@ -1,0 +1,20 @@
+{
+  "name": "claude-reel-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render a carousel.json into a 9:16 Instagram reel with Remotion.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render src/index.tsx Reel out/reel.mp4 --props=./sample-carousel.json"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.240",
+    "remotion": "^4.0.240",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "typescript": "^5.5.0"
+  }
+}

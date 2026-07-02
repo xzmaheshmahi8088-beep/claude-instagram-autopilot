@@ -1,0 +1,20 @@
+# Your brand — Claude reads this to generate reels in YOUR voice.
+niche: "AI + Instagram lead-gen for founders"
+
+brand:
+  handle: "@yourbusiness"
+  voice: "clear, confident, practical — no hype-spam. Teach something every beat."
+  pillars:
+    - "AI tools that save founders hours"
+    - "faceless content systems"
+    - "lead-gen on autopilot"
+
+cta:
+  keyword: "AUTOMATE"          # the comment word that triggers the DM
+  deliverable: "the 5-tool setup guide (this repo)"
+
+cadence:
+  timezone: "Asia/Kolkata"
+  slots_per_day: 1             # bump once you trust it
+
+# Honesty rule: every stat shown on screen must be real/defensible. Never fabricate numbers.

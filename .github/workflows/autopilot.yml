@@ -1,0 +1,52 @@
+name: autopilot
+
+# Auto-generate the next reel on a schedule. Review-gated by default (nothing posts
+# until AUTO_POST=true). Fill in the repo Secrets below, set your niche in
+# auto-generate/config.yml, then enable Actions.
+
+on:
+  schedule:
+    - cron: "0 13 * * *"     # daily 13:00 UTC — change to your slot(s)
+  workflow_dispatch: {}       # run manually from the Actions tab
+
+permissions:
+  contents: write             # so the run can commit the generated carousel.json / reel
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      COMPOSIO_API_KEY:  ${{ secrets.COMPOSIO_API_KEY }}
+      IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+      AUTO_POST: ${{ vars.AUTO_POST }}   # set repo Variable AUTO_POST=true to go hands-free
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      - name: Install Claude Code
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Generate the next reel (research → script → build)
+        run: |
+          NICHE=$(grep '^niche:' auto-generate/config.yml | cut -d'"' -f2)
+          claude -p "You are my content factory. Using the claude-content-skills + agent-reach skills: \
+            (1) find what's trending in the '$NICHE' niche on Reddit/X, \
+            (2) pick a proven viral reel FORMAT to model, \
+            (3) write an ORIGINAL carousel.json in my brand voice (see auto-generate/config.yml), \
+            (4) render it with the remotion/ project to out/reel.mp4. \
+            Every on-screen number must be REAL. Do NOT post — leave it for review." \
+            --dangerously-skip-permissions || echo "generation step is a template — wire your skills/keys"
+
+      - name: Commit the draft for review
+        run: |
+          git config user.name  "autopilot"
+          git config user.email "autopilot@users.noreply.github.com"
+          git add -A && git commit -m "autopilot: new reel draft [skip ci]" || echo "nothing to commit"
+          git push || true
+
+      # - name: Post it (only when AUTO_POST=true)
+      #   if: ${{ env.AUTO_POST == 'true' }}
+      #   run: claude -p "Publish out/reel.mp4 to Instagram via the Composio MCP, then wire the CTA keyword."
