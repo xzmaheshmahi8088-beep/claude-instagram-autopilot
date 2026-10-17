@@ -18,6 +18,7 @@ jobs:
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       COMPOSIO_API_KEY:  ${{ secrets.COMPOSIO_API_KEY }}
+      VIDEO_DB_API_KEY:  ${{ secrets.VIDEO_DB_API_KEY }}
       IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
       AUTO_POST: ${{ vars.AUTO_POST }}   # set repo Variable AUTO_POST=true to go hands-free
     steps:
@@ -46,6 +47,15 @@ jobs:
           git config user.email "autopilot@users.noreply.github.com"
           git add -A && git commit -m "autopilot: new reel draft [skip ci]" || echo "nothing to commit"
           git push || true
+
+      - name: Upload draft for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-reel-draft-${{ github.run_number }}
+          path: |
+            out/
+            auto-generate/
+          if-no-files-found: warn
 
       # - name: Post it (only when AUTO_POST=true)
       #   if: ${{ env.AUTO_POST == 'true' }}

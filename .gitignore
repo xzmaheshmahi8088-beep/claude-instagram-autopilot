@@ -1,4 +1,11 @@
+.env
+.env.*
+!.env.example
 node_modules/
 out/
 .DS_Store
 *.log
+remotion/out/
+*.mp4
+*.aiff
+*.wav

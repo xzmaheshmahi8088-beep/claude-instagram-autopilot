@@ -2,7 +2,7 @@
 niche: "AI + Instagram lead-gen for founders"
 
 brand:
-  handle: "@yourbusiness"
+  handle: "@ai.content.autopilot"
   voice: "clear, confident, practical — no hype-spam. Teach something every beat."
   pillars:
     - "AI tools that save founders hours"
@@ -14,7 +14,7 @@ cta:
   deliverable: "the 5-tool setup guide (this repo)"
 
 cadence:
-  timezone: "Asia/Kolkata"
+  timezone: "America/Los_Angeles"
   slots_per_day: 1             # bump once you trust it
 
 # Honesty rule: every stat shown on screen must be real/defensible. Never fabricate numbers.
